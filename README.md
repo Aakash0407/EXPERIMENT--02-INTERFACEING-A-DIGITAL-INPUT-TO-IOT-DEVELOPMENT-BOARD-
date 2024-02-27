@@ -1,19 +1,15 @@
-###  DATE: 
-
-###  NAME: 
-###  ROLL NO :
-###  DEPARTMENT: 
-
+###  DATE: 20.2.2024
+###  NAME: Aakash P
+###  ROLL NO : 212222110001
+###  DEPARTMENT: CSE(IOT)
 
 # EXPERIMENT--02-INTERFACING-A-DIGITAL-INPUT-TO-IOT-DEVELOPMENT-BOARD-
  
-
 ## Aim: To Interface a Digital Input  (IR pair ) to ARM IOT development board and write a  program to obtain  the data 
 ## Components required: STM32 CUBE IDE, ARM IOT development board,  STM programmer tool.
 ## Theory 
 The full form of an ARM is an advanced reduced instruction set computer (RISC) machine, and it is a 32-bit processor architecture expanded by ARM holdings. The applications of an ARM processor include several microcontrollers as well as processors. The architecture of an ARM processor was licensed by many corporations for designing ARM processor-based SoC products and CPUs. This allows the corporations to manufacture their products using ARM architecture. Likewise, all main semiconductor companies will make ARM-based SOCs such as Samsung, Atmel, TI etc.
 
- 
  # IR pair 
  
  ![image](https://user-images.githubusercontent.com/36288975/227598600-730748bf-9884-4a33-95bf-a1fbfde518ed.png)
@@ -77,13 +73,40 @@ The full form of an ARM is an advanced reduced instruction set computer (RISC) m
 
 
 ## STM 32 CUBE PROGRAM :
+````
+#include "main.h"
+#include "stdbool.h"
+bool IRSENSOR;
+void IRPAIR();
 
+ while (1)
+  {
+	  IRPAIR();
+  }
+void IRPAIR()
+{
+	IRSENSOR=HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_4);
 
-
+	if(IRSENSOR==1)
+	{
+		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_0,RESET);
+		HAL_Delay(1000);
+		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_0,SET);
+		HAL_Delay(1000);
+	}
+	else
+	{
+		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_0,RESET);
+		HAL_Delay(1000);
+	}
+}
+````
 ## Output  :
- 
- 
- 
- 
+### LED ON:
+<img src="https://github.com/Aakash0407/EXPERIMENT--02-INTERFACEING-A-DIGITAL-INPUT-TO-IOT-DEVELOPMENT-BOARD-/assets/118799103/910c6b78-e58a-436e-a347-f5e3e153fc58" width="700" height="800">
+
+### LED OFF:
+<img src="https://github.com/Aakash0407/EXPERIMENT--02-INTERFACEING-A-DIGITAL-INPUT-TO-IOT-DEVELOPMENT-BOARD-/assets/118799103/1d37840f-2eb4-4347-ad80-729499ae92ac" width="700" height="800">
+
 ## Result :
 Interfacing a digital Input (ir pair) with ARM microcontroller based IOT development is executed and the results are verified.
